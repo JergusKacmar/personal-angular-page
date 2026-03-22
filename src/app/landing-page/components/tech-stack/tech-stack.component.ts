@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-tech-stack',
   templateUrl: './tech-stack.component.html',
   styleUrls: ['./tech-stack.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatTooltipModule],
 })
 export class TechStackComponent {
   readonly stack: { path: string; desc: string }[] = [

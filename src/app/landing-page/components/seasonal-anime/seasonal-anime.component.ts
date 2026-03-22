@@ -1,5 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, computed } from '@angular/core';
+import { catchError, of } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   Anime,
   MyAnimeListService,
@@ -9,32 +11,35 @@ import {
   selector: 'app-seasonal-anime',
   templateUrl: './seasonal-anime.component.html',
   styleUrls: ['./seasonal-anime.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('fade', [
       transition('void => active', [
-        // using status here for transition
         style({ opacity: 0 }),
         animate(500, style({ opacity: 1 })),
       ]),
     ]),
   ],
 })
-export class SeasonalAnimeComponent implements OnInit {
-  constructor(private animeService: MyAnimeListService) {}
+export class SeasonalAnimeComponent {
+  private animeService = inject(MyAnimeListService);
 
-  loading = true;
-  public animes!: Promise<Anime[]>;
+  readonly animeData = toSignal(
+    this.animeService.getCurrentSeasonAnime().pipe(
+      catchError(() => of([] as Anime[]))
+    )
+  );
 
-  ngOnInit() {
-    this.animes = this.animeService
-      .getCurrentSeasonAnime()
-      .toPromise()
-      .finally(() => (this.loading = false));
-  }
+  loading = computed(() => this.animeData() === undefined);
+
+  
+  // Skeleton cards and lines within them
+  private readonly CARD_COUNT = 6;
+  private readonly LINE_COUNT = 5;
+  readonly skeletonCards = [...Array(this.CARD_COUNT).keys()];
+  readonly skeletonLines = [...Array(this.LINE_COUNT).keys()];
 
   onAnimeClick(url: string): void {
     window.open(url, '_blank');
   }
-
-  generateArray = (n: number) => [...Array(n).keys()];
 }

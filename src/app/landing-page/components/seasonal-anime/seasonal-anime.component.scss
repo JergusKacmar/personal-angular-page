@@ -3,6 +3,10 @@
 :host,
 .container {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .anime-block {
@@ -25,6 +29,9 @@
       font-family: "Courgette", cursive;
       font-size: 2rem;
       line-height: 1;
+    }
+    .anime-title {
+      margin-bottom: 1rem;
     }
   }
 }
@@ -64,6 +71,10 @@
 }
 
 @media only screen and (max-width: 959px) {
+  .container {
+    flex-direction: column;
+  }
+
   .anime-block {
     width: calc(94%);
   }

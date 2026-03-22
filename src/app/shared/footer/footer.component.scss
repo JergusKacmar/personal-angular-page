@@ -3,6 +3,16 @@
 .footer {
   background-color: $mainColor;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // filter to change color of black image to secondary color

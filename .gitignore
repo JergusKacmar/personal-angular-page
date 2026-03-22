@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/.angular
 /tmp
 /out-tsc
 # Only exists if Bazel was run
@@ -43,3 +44,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Claude Code
+.claude/

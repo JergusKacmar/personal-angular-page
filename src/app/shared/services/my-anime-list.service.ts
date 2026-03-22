@@ -1,23 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, delay } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
+import { Observable, map, delay } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MyAnimeListService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getCurrentSeasonAnime(): Observable<Anime[]> {
     const date = new Date();
     const getSeason = (d: Date) => Math.floor((d.getMonth() / 12) * 4) % 4;
     const season = ['winter', 'spring', 'summer', 'fall'][getSeason(date)];
     return this.http
-      .get<{ data: [] }>(
+      .get<{ data: Anime[] }>(
         `https://api.jikan.moe/v4/seasons/${date.getFullYear()}/${season}`
       )
       .pipe(
-        map((res) => (res.data as []).slice(0, 6)),
-        delay(1500) // to show an awesome loading animation
+        map((res) => res.data.slice(0, 6)),
+        delay(1500) // minimum display time so the skeleton animation is visible
       );
   }
 }

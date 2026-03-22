@@ -1,18 +1,19 @@
-<div class="footer" fxLayout="row" fxLayoutAlign="space-around center">
-  <span fxLayoutAlign="center center">
-    <img
-      *ngFor="let platform of socials"
-      (click)="platform.action()"
-      (keyup.enter)="platform.action()"
-      src="{{ platform.path }}"
-      alt="{{ platform.alt }}"
-      matTooltip="{{ platform.desc }}"
-      #tooltip="matTooltip"
-      (mouseenter)="tooltip.show()"
-      (mouseleave)="tooltip.hide()"
-      tabindex="0"
-      (focus)="tooltip.show()"
-      (unfocus)="tooltip.hide()"
-    />
+<div class="footer">
+  <span class="social-icons">
+    @for (platform of socials; track platform.alt) {
+      <img
+        (click)="platform.action()"
+        (keyup.enter)="platform.action()"
+        src="{{ platform.path }}"
+        alt="{{ platform.alt }}"
+        matTooltip="{{ platform.desc }}"
+        #tooltip="matTooltip"
+        (mouseenter)="tooltip.show()"
+        (mouseleave)="tooltip.hide()"
+        tabindex="0"
+        (focus)="tooltip.show()"
+        (unfocus)="tooltip.hide()"
+      />
+    }
   </span>
 </div>

@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { owner } from '../utils/static-data';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { LayoutBasicComponent } from '../shared/layout-basic/layout-basic.component';
 import { facebook, github, instagram } from '../utils/hrefs';
 
 @Component({
   selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
   styleUrls: ['./contact-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [LayoutBasicComponent, MatIconModule],
 })
 export class ContactPageComponent {
   public owner = owner;
@@ -15,7 +19,8 @@ export class ContactPageComponent {
   public instagram = instagram;
   public github = github;
 
-  constructor(private clipboard: Clipboard, private snackBar: MatSnackBar) {}
+  private clipboard = inject(Clipboard);
+  private snackBar = inject(MatSnackBar);
 
   copyToClipboard(text: string) {
     this.clipboard.copy(text);
