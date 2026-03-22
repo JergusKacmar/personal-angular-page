@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -22,7 +22,7 @@ import {
   ],
 })
 export class SeasonalAnimeComponent implements OnInit {
-  constructor(private animeService: MyAnimeListService) {}
+  private animeService = inject(MyAnimeListService);
 
   loading = true;
   animes!: Promise<Anime[]>;

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map, delay } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MyAnimeListService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getCurrentSeasonAnime(): Observable<Anime[]> {
     const date = new Date();

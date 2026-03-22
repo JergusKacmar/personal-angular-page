@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { owner } from '../utils/static-data';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,8 @@ export class ContactPageComponent {
   public instagram = instagram;
   public github = github;
 
-  constructor(private clipboard: Clipboard, private snackBar: MatSnackBar) {}
+  private clipboard = inject(Clipboard);
+  private snackBar = inject(MatSnackBar);
 
   copyToClipboard(text: string) {
     this.clipboard.copy(text);
