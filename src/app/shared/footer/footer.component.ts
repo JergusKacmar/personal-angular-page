@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { onFacebook, onInstagram, onGithub } from 'src/app/utils/hrefs';
 
 @Component({
-  standalone: false,
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
+  imports: [CommonModule, MatTooltipModule],
 })
 export class FooterComponent {
   readonly socials: {

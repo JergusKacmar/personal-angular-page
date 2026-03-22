@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { owner } from '../utils/static-data';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { LayoutBasicComponent } from '../shared/layout-basic/layout-basic.component';
 import { facebook, github, instagram } from '../utils/hrefs';
 
 @Component({
-  standalone: false,
   selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
   styleUrls: ['./contact-page.component.scss'],
+  imports: [LayoutBasicComponent, MatIconModule],
 })
 export class ContactPageComponent {
   public owner = owner;

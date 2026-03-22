@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
-  standalone: false,
   selector: 'app-tech-stack',
   templateUrl: './tech-stack.component.html',
   styleUrls: ['./tech-stack.component.scss'],
+  imports: [CommonModule, MatTooltipModule],
 })
 export class TechStackComponent {
   readonly stack: { path: string; desc: string }[] = [

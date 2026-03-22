@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import {
   Anime,
@@ -7,10 +8,10 @@ import {
 } from 'src/app/shared/services/my-anime-list.service';
 
 @Component({
-  standalone: false,
   selector: 'app-seasonal-anime',
   templateUrl: './seasonal-anime.component.html',
   styleUrls: ['./seasonal-anime.component.scss'],
+  imports: [CommonModule],
   animations: [
     trigger('fade', [
       transition('void => active', [
