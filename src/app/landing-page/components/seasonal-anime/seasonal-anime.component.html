@@ -1,5 +1,5 @@
 <div class="container">
-  @if (loading) {
+  @if (loading()) {
     @for (index of skeletonCards; track index) {
       <div class="anime-block">
         <div class="skeleton img"></div>
@@ -11,7 +11,7 @@
       </div>
     }
   } @else {
-    @for (anime of (animes | async) ?? []; track anime.url) {
+    @for (anime of animeData(); track anime.url) {
       <div
         [@fade]="'active'"
         class="anime-block"
