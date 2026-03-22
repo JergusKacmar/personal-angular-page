@@ -1,4 +1,4 @@
-<span fxLayout="row wrap" fxLayoutAlign="center center">
+<span class="tech-stack-container">
   <img
     *ngFor="let tech of stack"
     src="{{ tech.path }}"
@@ -10,6 +10,6 @@
     (mouseleave)="tooltip.hide()"
     tabindex="0"
     (focus)="tooltip.show()"
-    (unfocus)="tooltip.hide()"
+    (blur)="tooltip.hide()"
   />
 </span>

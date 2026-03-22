@@ -3,6 +3,11 @@
 .container {
   max-width: $pageWidth;
   margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   span{
       font-size: 1.5rem;

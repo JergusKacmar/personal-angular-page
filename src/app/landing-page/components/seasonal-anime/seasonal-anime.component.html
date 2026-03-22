@@ -1,9 +1,4 @@
-<div
-  fxLayout="row wrap"
-  fxLayout.lt-md="column"
-  fxLayoutAlign="center center"
-  class="container"
->
+<div class="container">
   <ng-container
     *ngIf="loading; then skeletonLoading; else resolvedPromise"
   ></ng-container>
@@ -23,19 +18,19 @@
         alt="{{ anime.title + ' front image' }}"
       />
       <div>
-        <div style="margin-bottom: 1rem">{{ anime.title }}</div>
+        <div class="anime-title">{{ anime.title }}</div>
         <div *ngIf="anime.score">Score {{ anime.score }}</div>
       </div>
     </div>
   </ng-template>
 
   <ng-template #skeletonLoading>
-    <div *ngFor="let index of generateArray(6)" class="anime-block">
+    <div *ngFor="let index of skeletonCards" class="anime-block">
       <div class="skeleton img"></div>
       <div>
         <div
           class="skeleton skeleton-text"
-          *ngFor="let index of generateArray(5)"
+          *ngFor="let index of skeletonLines"
         ></div>
       </div>
     </div>

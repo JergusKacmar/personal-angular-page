@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { onFacebook, onInstagram, onGithub } from 'src/app/utils/hrefs';
 
 @Component({
+  standalone: false,
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
@@ -16,19 +17,19 @@ export class FooterComponent {
     {
       path: './assets/logos/facebook.svg',
       desc: 'Visit my facebook page',
-      alt: 'redirect to facebook page',
+      alt: 'Facebook logo',
       action: onFacebook,
     },
     {
       path: './assets/logos/instagram.svg',
       desc: 'Visit my instagram page',
-      alt: 'redirect to instagram page',
+      alt: 'Instagram logo',
       action: onInstagram,
     },
     {
       path: './assets/logos/github.svg',
       desc: 'Visit my github page',
-      alt: 'redirect to github page',
+      alt: 'GitHub logo',
       action: onGithub,
     },
   ];
