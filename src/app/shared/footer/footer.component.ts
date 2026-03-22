@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { onFacebook, onInstagram, onGithub } from 'src/app/utils/hrefs';
 
@@ -7,7 +6,8 @@ import { onFacebook, onInstagram, onGithub } from 'src/app/utils/hrefs';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  imports: [CommonModule, MatTooltipModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatTooltipModule],
 })
 export class FooterComponent {
   readonly socials: {

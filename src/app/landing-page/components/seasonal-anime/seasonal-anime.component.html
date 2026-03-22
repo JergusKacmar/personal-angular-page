@@ -1,38 +1,36 @@
 <div class="container">
-  <ng-container
-    *ngIf="loading; then skeletonLoading; else resolvedPromise"
-  ></ng-container>
-
-  <ng-template #resolvedPromise>
-    <div
-      [@fade]="'active'"
-      *ngFor="let anime of animes | async"
-      class="anime-block"
-      (click)="onAnimeClick(anime.url)"
-      (keyup.enter)="onAnimeClick(anime.url)"
-      tabindex="0"
-    >
-      <img
-        class="img"
-        src="{{ anime.images.jpg.image_url }}"
-        alt="{{ anime.title + ' front image' }}"
-      />
-      <div>
-        <div class="anime-title">{{ anime.title }}</div>
-        <div *ngIf="anime.score">Score {{ anime.score }}</div>
+  @if (loading) {
+    @for (index of skeletonCards; track index) {
+      <div class="anime-block">
+        <div class="skeleton img"></div>
+        <div>
+          @for (index of skeletonLines; track index) {
+            <div class="skeleton skeleton-text"></div>
+          }
+        </div>
       </div>
-    </div>
-  </ng-template>
-
-  <ng-template #skeletonLoading>
-    <div *ngFor="let index of skeletonCards" class="anime-block">
-      <div class="skeleton img"></div>
-      <div>
-        <div
-          class="skeleton skeleton-text"
-          *ngFor="let index of skeletonLines"
-        ></div>
+    }
+  } @else {
+    @for (anime of (animes | async) ?? []; track anime.url) {
+      <div
+        [@fade]="'active'"
+        class="anime-block"
+        (click)="onAnimeClick(anime.url)"
+        (keyup.enter)="onAnimeClick(anime.url)"
+        tabindex="0"
+      >
+        <img
+          class="img"
+          src="{{ anime.images.jpg.image_url }}"
+          alt="{{ anime.title + ' front image' }}"
+        />
+        <div>
+          <div class="anime-title">{{ anime.title }}</div>
+          @if (anime.score) {
+            <div>Score {{ anime.score }}</div>
+          }
+        </div>
       </div>
-    </div>
-  </ng-template>
+    }
+  }
 </div>

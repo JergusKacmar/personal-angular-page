@@ -1,15 +1,16 @@
 <span class="tech-stack-container">
-  <img
-    *ngFor="let tech of stack"
-    src="{{ tech.path }}"
-    alt="{{ tech.desc }}"
-    matTooltip="{{ tech.desc }}"
-    #tooltip="matTooltip"
-    (click)="tooltip.toggle()"
-    (mouseenter)="tooltip.show()"
-    (mouseleave)="tooltip.hide()"
-    tabindex="0"
-    (focus)="tooltip.show()"
-    (blur)="tooltip.hide()"
-  />
+  @for (tech of stack; track tech.desc) {
+    <img
+      src="{{ tech.path }}"
+      alt="{{ tech.desc }}"
+      matTooltip="{{ tech.desc }}"
+      #tooltip="matTooltip"
+      (click)="tooltip.toggle()"
+      (mouseenter)="tooltip.show()"
+      (mouseleave)="tooltip.hide()"
+      tabindex="0"
+      (focus)="tooltip.show()"
+      (blur)="tooltip.hide()"
+    />
+  }
 </span>

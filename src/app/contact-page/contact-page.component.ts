@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { owner } from '../utils/static-data';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +10,7 @@ import { facebook, github, instagram } from '../utils/hrefs';
   selector: 'app-contact-page',
   templateUrl: './contact-page.component.html',
   styleUrls: ['./contact-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LayoutBasicComponent, MatIconModule],
 })
 export class ContactPageComponent {

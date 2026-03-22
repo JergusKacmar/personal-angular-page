@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import {
   Anime,
@@ -11,7 +11,8 @@ import {
   selector: 'app-seasonal-anime',
   templateUrl: './seasonal-anime.component.html',
   styleUrls: ['./seasonal-anime.component.scss'],
-  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [AsyncPipe],
   animations: [
     trigger('fade', [
       transition('void => active', [
